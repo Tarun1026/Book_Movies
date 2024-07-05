@@ -9,7 +9,11 @@ const stripe = require("stripe")(
 let orders = [];
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://frontend-77qc.vercel.app', // Replace with your frontend URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // if you need to send cookies or other credentials
+}));
 
 app.post("/api/create-checkout-session", async (req, res) => {
   try {
