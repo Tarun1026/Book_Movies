@@ -94,6 +94,7 @@ export const Right = styled.div`
 .loading-gif {
   width: 12rem;
   height: 12rem;
+ 
 }
 
 .movie-grid-2 {

@@ -186,14 +186,13 @@ export const Right2 = styled.div`
   margin-top: 20px;
   
 }
-//   .total-icon{
-//   margin-top:1rem;
-//   }
+
 .total-count{
 display:flex;
 font-size:1.3rem;
 margin-left:0.5rem;
 font-weight:800;
+margin-top:0.5rem;
 }
 
 .price{
