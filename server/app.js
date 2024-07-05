@@ -45,6 +45,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
     });
 
     const orderId = uuid.v4(); 
+    console.log(orderId)
     const order = {
       oId: orderId, 
       products: products.map((product) => ({
