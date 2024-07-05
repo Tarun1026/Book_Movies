@@ -259,7 +259,7 @@ color: ${({ theme }) => theme.color};
 
  .price{
   margin-left:2px;
-  margin-top:-0.15rem;
+ 
  }
 
  .total-icon{
