@@ -173,14 +173,14 @@ const HomePage = ({ movie }) => {
   };
   const darkTheme = {
     backgroundColor: "#0b0b0d",
-    color: "white",
+    color: "#e3e3e3",
     dropdownBackground: "#222831",
     releaseDateColor: "#90f6d7",
     addButtonColor: "blue",
   };
 
   const lightTheme = {
-    backgroundColor: "white",
+    backgroundColor: "#e3e3e3",
     color: "black",
     dropdownBackground: "#d3d3d3",
     releaseDateColor: "blue",
@@ -213,7 +213,7 @@ const HomePage = ({ movie }) => {
               <Link to="/favorite">
                 <button className="btn-fav-mov">Favourite Movies</button>
                 <Link to="/book">
-                <button className="btn-cart-icon"><FaShoppingCart size={25} className="shop-cart-icon"/></button>
+                <button className="btn-cart-icon"><FaShoppingCart size={20} className="shop-cart-icon"/></button>
               </Link>
               </Link>
             </div>

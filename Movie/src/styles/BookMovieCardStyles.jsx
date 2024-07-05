@@ -149,6 +149,12 @@ padding-top:5px;
   left:10px;
   }
 
+   .icon-cart {
+    font-size: 1.2rem;
+    margin-right: 5px;
+  }
+
+
 }
 `;
 
@@ -252,11 +258,11 @@ color: ${({ theme }) => theme.color};
  }
 
  .price{
- margin-top:0.5rem;
+  margin-left:2px;
  }
 
  .total-icon{
-  margin-top:1rem;
+  // margin-top:1rem;
   }
 }
 `;

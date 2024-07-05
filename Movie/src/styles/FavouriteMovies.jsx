@@ -36,6 +36,7 @@ button:hover {
 
 .btn-cart-icon{
 background-color:black;
+padding: 6.5px 20px;
 }
 .right-end {
   margin-left: auto;
@@ -54,6 +55,23 @@ font-size:0.7rem;
 
 }
 
+.btn-cart-icon{
+margin-top:0.5rem;
+text-align:center;
+align-items:center;
+height:2.15rem;
+// padding-bottom:2.2rem;
+// padding-top:-2rem;
+// padding-left:2rem;
+width:auto;
+}
+.shop-cart-icon{
+text-align:center;
+align-items:center;
+// margin-right:2rem;
+height:1rem;
+width:1.5rem;
+}
 
 border: none;
   padding: 0;
