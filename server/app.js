@@ -4,7 +4,7 @@ const cors = require("cors");
 const stripe = require("stripe")(
   "sk_test_51PYoCmJmTK5SEvYuVqyXdbTIIOIziGQXa2pkhuAjTTp0YixmRYUBnJsdzvKX7D8ev53pXN8pVmtB1YejvSP7xBIn00epRWUXYt"
 );
-
+const uuid = require("uuid"); 
 
 let orders = [];
 
@@ -45,6 +45,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
     });
 
     const orderId = uuid.v4(); 
+    console.log("Order ID:", orderId);
     console.log(orderId)
     const order = {
       oId: orderId, 
@@ -54,7 +55,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
         vote_count: product.vote_count,
       })),
     };
-    console.log("Order ID:", order.id);
+    
     orders.push(order);
 
     res.json({ id: session.id });
@@ -71,5 +72,7 @@ app.get("/api/orders", (req, res) => {
 
 const port = process.env.PORT || 7000;
 app.listen(port, () => {
+  // const orderId = uuid.v4(); 
+  // console.log("Order ID:", orderId);
   console.log(`Server started on port ${port}`);
 });
