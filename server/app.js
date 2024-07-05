@@ -5,17 +5,17 @@ const stripe = require("stripe")(
   "sk_test_51PYoCmJmTK5SEvYuVqyXdbTIIOIziGQXa2pkhuAjTTp0YixmRYUBnJsdzvKX7D8ev53pXN8pVmtB1YejvSP7xBIn00epRWUXYt"
 );
 
-// Temporary in-memory storage for orders (replace with a database in production)
+
 let orders = [];
 
 app.use(express.json());
 app.use(cors({
   origin: 'https://frontend-77qc.vercel.app', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // if you need to send cookies or other credentials
+  credentials: true, 
 }));
 
-// api/create-checkout-session.js
+
 
 
 
@@ -40,11 +40,11 @@ app.post("/api/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:5173/success",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: "https://frontend-77qc.vercel.app/success",
+      cancel_url: "https://frontend-77qc.vercel.app/cancel",
     });
 
-    // Store the order in memory (in a real app, you would save to a database)
+    
     const order = {
       sessionId: session.id,
       products: products.map((product) => ({
@@ -62,7 +62,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
   }
 });
 
-// Endpoint to retrieve all orders (for demonstration, replace with proper API)
+
 app.get("/api/orders", (req, res) => {
   res.json(orders);
 });

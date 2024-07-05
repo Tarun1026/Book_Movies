@@ -11,8 +11,9 @@ import {
 } from "../styles/Favourite";
 import { PageContainer } from "../styles/PageContainer";
 import { loadStripe } from "@stripe/stripe-js";
-
+import loadingGif from "../assets/loading-white.gif";
 const BookMovieCard = () => {
+  const [loading, setLoading] = useState(false);
   const { bookMovies, removeBookMovies, addBookMovies } = useBookMovie();
   const [isOn, setIsOn] = useState(false);
 console.log("book",bookMovies);
@@ -34,6 +35,7 @@ console.log("book",bookMovies);
     };
   
     try {
+      setLoading(true);
       const response = await fetch("https://backend-1-gsu0.onrender.com/api/create-checkout-session", {
         method: "POST",
         headers: headers,
@@ -51,6 +53,7 @@ console.log("book",bookMovies);
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
+      setLoading(false);
   
       if (result.error) {
         console.error(result.error.message);
@@ -160,11 +163,16 @@ console.log("book",bookMovies);
                   <div className="price">{getTotalVoteCount()}</div>
                 </div>
               </div>
-              {/* < a href="https://buy.stripe.com/test_9AQg16bvDgRA7i8000"> */}
+              {loading ? (
+                <div>
+                  <img src={loadingGif} alt="Loading" className="loading-gif" />
+                </div>
+              ) : (
               <button className="btn-pay" onClick={makePayment}>
                 Proceed to pay
+
               </button>
-              {/* </a> */}
+              )}
             </div>
           </Right2>
         </PageContainer>
