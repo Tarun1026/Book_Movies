@@ -51,7 +51,7 @@ const OrdersPage = () => {
             {orders.map((order) => (
               <OrderCard key={order.id}>
               
-                <OrderTitle>Order ID: <span>{order.oId}</span></OrderTitle>
+                <OrderTitle>Order ID: <div className="id">{order.oId}</div></OrderTitle>
                 
                 <ProductsGrid>
                   {order.products.map((product) => (
