@@ -10,7 +10,7 @@ let orders = [];
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://frontend-77qc-git-master-taruns-projects-4c9601cc.vercel.app', // Replace with your frontend URL
+  origin: 'https://frontend-77qc.vercel.app', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // if you need to send cookies or other credentials
 }));

@@ -34,7 +34,7 @@ console.log("book",bookMovies);
     };
   
     try {
-      const response = await fetch("https://backend-git-master-taruns-projects-4c9601cc.vercel.app/api/create-checkout-session", {
+      const response = await fetch("https://backend-1-gsu0.onrender.com/api/create-checkout-session", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
