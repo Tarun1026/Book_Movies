@@ -186,17 +186,18 @@ export const Right2 = styled.div`
   margin-top: 20px;
   
 }
-
+  .total-icon{
+  margin-top:0.3rem;
+  }
 .total-count{
 display:flex;
 font-size:1.3rem;
 margin-left:0.5rem;
 font-weight:800;
-margin-top:0.5rem;
 }
 
 .price{
-margin-top:-0.15rem;
+margin-top:0rem;
 }
 
 .btn-pay{
@@ -258,6 +259,7 @@ color: ${({ theme }) => theme.color};
 
  .price{
   margin-left:2px;
+  margin-top:-0.15rem;
  }
 
  .total-icon{
