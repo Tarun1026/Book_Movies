@@ -11,7 +11,7 @@ const OrdersPage = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:7000/api/orders")
+    fetch("https://backend-1-gsu0.onrender.com/api/orders")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
