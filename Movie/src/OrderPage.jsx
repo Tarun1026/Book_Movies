@@ -1,11 +1,10 @@
 import React, { useState,useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { FaRupeeSign } from "react-icons/fa";
-// import { useBookMovie } from "./BookMovie";
 import { Right2,SwitchContainer, SwitchLabel, SwitchButton,PageContainer  } from "./styles/orders";
 
 import { Link } from "react-router-dom";
-// import { loadStripe } from "@stripe/stripe-js";
+
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -20,7 +19,7 @@ const OrdersPage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Fetched orders:", data); // Check console for fetched data
+        console.log("Fetched orders:", data); 
         setOrders(data);
       })
       .catch((error) => console.error("Error fetching orders:", error));

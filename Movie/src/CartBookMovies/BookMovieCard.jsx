@@ -163,15 +163,15 @@ console.log("book",bookMovies);
                   <div className="price">{getTotalVoteCount()}</div>
                 </div>
               </div>
-              {loading ? (
-                <div>
-                  <img src={loadingGif} alt="Loading" className="loading-gif" />
-                </div>
-              ) : (
+              
               <button className="btn-pay" onClick={makePayment}>
                 Proceed to pay
 
               </button>
+              {loading && (
+                <div>
+                  <img src={loadingGif} alt="Loading" className="loading-gif" />
+                </div>
               )}
             </div>
           </Right2>
