@@ -46,6 +46,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
 
     
     const order = {
+      id: uuidv4(),
       sessionId: session.id,
       products: products.map((product) => ({
         title: product.title,
