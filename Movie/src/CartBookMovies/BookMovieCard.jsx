@@ -16,7 +16,7 @@ const BookMovieCard = () => {
   const [loading, setLoading] = useState(false);
   const { bookMovies, removeBookMovies, addBookMovies } = useBookMovie();
   const [isOn, setIsOn] = useState(false);
-console.log("book",bookMovies);
+  console.log("book", bookMovies);
   const toggleSwitch = () => {
     setIsOn(!isOn);
   };
@@ -25,36 +25,37 @@ console.log("book",bookMovies);
     const stripe = await loadStripe(
       "pk_test_51PYoCmJmTK5SEvYuMFhxa7o6sFiL1pa2936Y22pXcafcnDexXNSO5fEYOa20tNfpkB9PcIXFO93aYbKneRgpYwTK00miM1att8"
     );
-  
+
     const body = {
       products: bookMovies,
     };
-  
+
     const headers = {
       "Content-Type": "application/json",
     };
-  
+
     try {
       setLoading(true);
-      const response = await fetch("https://backend-1-gsu0.onrender.com/api/create-checkout-session", {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-        
-      });
-  
+      const response = await fetch(
+        "https://backend-1-gsu0.onrender.com/api/create-checkout-session" ,
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        }
+      );
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-     
-  
+
       const session = await response.json();
-  
+
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
       setLoading(false);
-  
+
       if (result.error) {
         console.error(result.error.message);
       }
@@ -62,7 +63,6 @@ console.log("book",bookMovies);
       console.error("Error:", error);
     }
   };
-  
 
   const darkTheme = {
     backgroundColor: "#0b0b0d",
@@ -163,10 +163,9 @@ console.log("book",bookMovies);
                   <div className="price">{getTotalVoteCount()}</div>
                 </div>
               </div>
-              
+
               <button className="btn-pay" onClick={makePayment}>
                 Proceed to pay
-
               </button>
               {loading && (
                 <div>
