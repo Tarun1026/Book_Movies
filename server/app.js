@@ -15,6 +15,24 @@ app.use(cors({
   credentials: true, // if you need to send cookies or other credentials
 }));
 
+// api/create-checkout-session.js
+
+module.exports = (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://frontend-77qc-git-master-taruns-projects-4c9601cc.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+  if (req.method === 'OPTIONS') {
+    // Handle preflight request
+    res.status(204).end();
+    return;
+  }
+
+  // Your existing code
+  res.json({ message: 'Checkout session created' });
+};
+
+
 app.post("/api/create-checkout-session", async (req, res) => {
   try {
     const { products } = req.body;
