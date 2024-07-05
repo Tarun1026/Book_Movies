@@ -20,6 +20,10 @@
         {
            "src":"/cancel",
             "dest":"/"
+        },
+        {
+           "src":"/order",
+            "dest":"/"
         }
     ]
 }
