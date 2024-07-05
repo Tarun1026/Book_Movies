@@ -44,16 +44,16 @@ app.post("/api/create-checkout-session", async (req, res) => {
       cancel_url: "https://frontend-77qc.vercel.app/cancel",
     });
 
-    
+    const orderId = uuid.v4(); 
     const order = {
-      id: uuidv4(),
-      sessionId: session.id,
+      oId: orderId, 
       products: products.map((product) => ({
         title: product.title,
         poster_path: product.poster_path,
         vote_count: product.vote_count,
       })),
     };
+    console.log("Order ID:", order.id);
     orders.push(order);
 
     res.json({ id: session.id });
