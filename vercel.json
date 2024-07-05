@@ -1,0 +1,25 @@
+{
+    "routes":[
+        {
+
+            "src":"/",
+            "dest":"/"
+        },
+        {
+           "src":"/favorite",
+            "dest":"/"
+        },
+        {
+           "src":"/book",
+            "dest":"/"
+        },
+        {
+           "src":"/success",
+            "dest":"/"
+        },
+        {
+           "src":"/cancel",
+            "dest":"/"
+        }
+    ]
+}
