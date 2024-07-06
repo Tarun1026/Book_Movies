@@ -143,4 +143,54 @@ export const Right = styled.div`
     margin-top: 1.5rem;
   }
 }
+
+  @media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}) {
+
+.movie-grid{
+grid-template-columns: repeat(2, 1fr);
+}
+.right-left-div{
+margin-top:1.5rem;
+}
+.left-div{
+
+margin-right:2rem;}
+}
+ @media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}) {
+.dropdown{
+
+width:40%;
+}
+  .left-div {
+    display: none;
+  }
+.right-left-div{
+margin-top:1.5rem;
+}
+  .movie-grid{
+  grid-template-columns:repeat(2,1fr);
+  grid-gap:0px;
+  }
+
+.right-left-div{
+margin-left:0rem;}
+}
+
+@media (min-width: ${({ theme }) => theme.media.tab}) and (max-width: ${({ theme }) => theme.media.minLaptop}) {
+
+ .movie-grid{
+ grid-template-columns:repeat(3,1fr);
+  grid-gap:0px;
+  }
+  .right-left-div{
+margin-top:1.5rem;
+}
+
+//   .right-left-div{
+// margin-left:1rem;  
+// }
+// .right-div{
+// margin-left:2rem;
+// }
+}
 `;

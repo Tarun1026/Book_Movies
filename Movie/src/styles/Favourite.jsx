@@ -15,7 +15,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 background-color: ${({ theme }) => theme.backgroundColor};
 color: ${({ theme }) => theme.color};
 margin: 1rem;
-width: 16rem;
+width: 18rem;
 // height:29rem;
 transition: transform 0.2s ease-in-out;
 // margin-left:4rem;
@@ -131,12 +131,32 @@ padding-top:5px;
   }
 
 }
+  @media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}){
+  width:18rem;
+  margin-left:3rem;
+  
+  .movie-poster {
+
+  height: 15rem;
+
+}
+  }
+   @media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}){
+  width:15rem;
+  margin-left:0rem;
+  
+  .movie-poster {
+
+  height: 13rem;
+
+}
+  }
 `;
 
 export const Right2 = styled.div`
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 0px;
   margin-top: 20px;
 }
@@ -174,6 +194,28 @@ color: ${({ theme }) => theme.color};
   }
  
 }
+       @media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}){
+.movie-grid{
+grid-template-columns:repeat(2,1fr);
+}
+.heading{
+margin-left:3rem;
+}
+    }
+     @media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}){
+.movie-grid{
+grid-template-columns:repeat(2,1fr);
+}
+.heading{
+margin-left:0rem;
+}
+
+    }
+ @media (min-width: ${({ theme }) => theme.media.tab}) and (max-width: ${({ theme }) => theme.media.minLaptop}) {
+ .movie-grid{
+grid-template-columns:repeat(3,1fr);
+}
+ }
 `;
 
 export const SwitchContainer = styled.div`

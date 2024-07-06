@@ -156,6 +156,26 @@ padding-top:5px;
 
 
 }
+  @media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}){
+  width:18rem;
+  margin-left:3rem;
+  
+  .movie-poster {
+
+  height: 15rem;
+
+}
+  }
+ @media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}){
+  width:15rem;
+  margin-left:0rem;
+  
+  .movie-poster {
+
+  height: 13rem;
+
+}
+  }
 `;
 
 export const Right2 = styled.div`
@@ -259,13 +279,53 @@ color: ${({ theme }) => theme.color};
 
  .price{
   margin-left:2px;
+  margin-top:2px;
  
  }
 
  .total-icon{
   // margin-top:1rem;
   }
+
 }
+      @media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}){
+.movie-grid{
+grid-template-columns:repeat(2,1fr);
+}
+.heading{
+margin-left:3rem;
+}
+.sub-total{
+margin-left:3rem;
+}
+.btn-pay{
+margin-left:3rem;
+
+
+    }
+}
+         @media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}){
+.movie-grid{
+grid-template-columns:repeat(2,1fr);
+}
+.heading{
+margin-left:0rem;
+}
+
+.sub-total{
+margin-left:0rem;
+}
+.btn-pay{
+margin-left:0rem;
+
+
+    }
+    }
+     @media (min-width: ${({ theme }) => theme.media.tab}) and (max-width: ${({ theme }) => theme.media.minLaptop}) {
+ .movie-grid{
+grid-template-columns:repeat(3,1fr);
+}
+ }
 `;
 
 export const SwitchContainer = styled.div`
@@ -273,6 +333,8 @@ display: flex;
 justify-content:space-between;
 align-items: center;
 cursor: pointer;
+
+
 `;
 
 export const SwitchLabel = styled.span`
@@ -305,6 +367,7 @@ transition: background 0.3s;
   border-radius: 50%;
   transition: left 0.3s;
 }
+ 
 
 @media (max-width: ${({ theme }) => theme.media.mobile}){
 width:40px;

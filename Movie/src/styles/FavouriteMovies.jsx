@@ -36,7 +36,8 @@ button:hover {
 
 .btn-cart-icon{
 background-color:black;
-padding: 6.5px 20px;
+padding: 7px 20px;
+
 }
 .right-end {
   margin-left: auto;
@@ -46,6 +47,7 @@ padding: 6.5px 20px;
 .container{
 display:flex;
 justify-content:center;
+margin-top:1rem;
 }
 
 button{

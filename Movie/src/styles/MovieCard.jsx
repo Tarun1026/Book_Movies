@@ -95,7 +95,7 @@ export const MovieCard = styled.div`
   }
 
   .icon-cart {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     // margin-right: 5px;
   }
 
@@ -158,4 +158,24 @@ color:green;
       margin-left:2.8rem;
       }
   }
+      @media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}) {
+      
+      width:15rem;
+      }
+@media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}) {
+
+width:auto;
+
+}
+      @media (min-width: ${({ theme }) => theme.media.tab}) and (max-width: ${({ theme }) => theme.media.minLaptop}) {
+      
+      
+      width:auto;
+
+      .title{
+      font-size:1.2rem;
+      }
+      }
+      
+
 `;

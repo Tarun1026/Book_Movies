@@ -10,6 +10,9 @@ const FailMessage = styled.div`
   max-width: 400px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   @media  (max-width: ${({ theme }) => theme.media.mobile}) {
+max-width:13rem;
+ }
 `;
 const Cancel = () => {
   return (

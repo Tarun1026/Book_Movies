@@ -13,7 +13,7 @@ import Cancel from "./Cancel";
 import OrdersPage from "./OrderPage";
 const App = () => {
   const theme = {
-    media: { mobile: "480px", tab: "998px" },
+    media: { mobile: "480px", tab: "998px",mobile2:"768px" ,minLaptop:"1400px"},
   };
 
   return (

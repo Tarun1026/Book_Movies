@@ -41,5 +41,17 @@ export const Nav = styled.nav`
     width: 3rem;
     height: 3rem;
   }
+
+}
+@media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}){
+    .input-search{
+    width:66%;
+}
+    }
+@media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}){
+
+.input-search{
+width:46%
+}
 }
 `;
