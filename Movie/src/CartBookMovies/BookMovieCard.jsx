@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useBookMovie } from "./BookMovie";
 import { Book, Right2 } from "../styles/BookMovieCardStyles";
 
@@ -20,6 +20,10 @@ const BookMovieCard = () => {
   const toggleSwitch = () => {
     setIsOn(!isOn);
   };
+
+  useEffect(() => {
+    setLoading(false); 
+  }, []);
 
   const makePayment = async () => {
     const stripe = await loadStripe(
@@ -169,7 +173,7 @@ const BookMovieCard = () => {
               </button>
               {loading && (
                 <div>
-                  <img src={loadingGif} alt="Loading" className="loading-gif" />
+                  <img src={loadingGif} alt="Loading" className="loadingGif" />
                 </div>
               )}
             </div>

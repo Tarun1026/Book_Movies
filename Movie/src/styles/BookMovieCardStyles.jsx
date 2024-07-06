@@ -263,6 +263,12 @@ font-size:1.5rem;
 color: ${({ theme }) => theme.color};
 }
 
+.loadingGif {
+  width: 12rem;
+  height: 12rem;
+ 
+}
+
 @media (max-width: ${({ theme }) => theme.media.mobile}){
 .movie-grid {
   display: grid;
