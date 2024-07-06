@@ -72,7 +72,5 @@ app.get("/api/orders", (req, res) => {
 
 const port = process.env.PORT || 7000;
 app.listen(port, () => {
-  // const orderId = uuid.v4(); 
-  // console.log("Order ID:", orderId);
   console.log(`Server started on port ${port}`);
 });
