@@ -58,13 +58,15 @@ const BookMovieCard = () => {
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
-      setLoading(false);
+      
 
       if (result.error) {
         console.error(result.error.message);
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error:", error);
+    
     }
   };
 
