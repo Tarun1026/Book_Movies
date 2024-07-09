@@ -171,6 +171,10 @@ color:green;
       height: 14rem;
       max-width: 100.5%;
     }
+
+    .aTC-btn {
+    margin-right:5rem;
+    }
       .btn-cart{
       
       margin-left:2.8rem;

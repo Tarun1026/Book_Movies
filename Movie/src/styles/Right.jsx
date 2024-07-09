@@ -116,7 +116,7 @@ export const Right = styled.div`
 @media (max-width: ${({ theme }) => theme.media.mobile}) {
 
   .right-left-div{
-margin-top:2rem;
+margin-top:1rem;
 }
 
   .right-p {
