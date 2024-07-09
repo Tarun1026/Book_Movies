@@ -14,6 +14,7 @@ export const MovieCard = styled.div`
   color: ${({ theme }) => theme.color};
   margin: 10px;
   width: 17rem;
+  
   transition: transform 0.2s ease-in-out;
 
   &:hover {
@@ -69,15 +70,19 @@ export const MovieCard = styled.div`
     font-size: 1.5rem;
     font-weight: 900;
   }
-
+.rel{
+font-size:1rem;
+margin-top:5px;
+}
   .release_date {
     display: flex;
     justify-content: space-between;
     margin-left: 8px;
     margin-top: 10px;
     font-size: 1.2rem;
-    font-weight: 800;
-    color: ${({ theme }) => theme.releaseDateColor};
+    font-weight: 400;
+    // margin-top:2rem;
+    // color: ${({ theme }) => theme.releaseDateColor};
   }
 
   .fav-icon {
@@ -89,19 +94,31 @@ export const MovieCard = styled.div`
     .cart {
     position: absolute;
     bottom: 10px;
-    left: 5px;
+    left: 10px;
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: center;
   }
 
   .icon-cart {
     font-size: 1.1rem;
-    // margin-right: 5px;
+    margin-right: 2px;
+  }
+
+  .aTC-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-right:2.5rem;
   }
 
   .btn-cart {
     padding: 8px 16px;
-    margin-left:30px;
+    // margin-left:30px;
+
+    align-items: center;
     background-color: #f0c14b;
     color: #111;
     border: none;
@@ -125,6 +142,7 @@ export const MovieCard = styled.div`
     font-size: inherit;
     font-family: inherit;
     text-decoration: underline;
+    font-weight:800;
   }
 
 .btn-fav:hover{

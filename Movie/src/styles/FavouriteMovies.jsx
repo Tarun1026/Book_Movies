@@ -13,21 +13,30 @@ export const FavouriteMovies = styled.div`
 
 .container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-top:-15px;
+  // align-items: center;
 }
-
+.right-end{
+display:flex;
+}
 
 button {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 6px 15px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  margin-right:1rem;
+  // margin-right:1rem;
+}
+
+.btn-fav-mov{
+width:90%;
+font-size:0.8rem;
+margin-right:20px;
+
 }
 
 button:hover {
@@ -40,15 +49,23 @@ padding: 7px 20px;
 
 }
 .right-end {
-  margin-left: auto;
+  margin-left: 0rem;
 }
 
 @media (max-width: ${({ theme }) => theme.media.mobile}) {
+
 .container{
 display:flex;
-justify-content:center;
-margin-top:1rem;
+justify-content: flex-start;
+margin-top:2rem;
 }
+
+.btn-fav-mov{
+width:80%;
+margin-left:10px;
+
+}
+
 
 button{
 // display:flex;
@@ -58,18 +75,21 @@ font-size:0.7rem;
 }
 
 .btn-cart-icon{
-margin-top:0.5rem;
+
 text-align:center;
 align-items:center;
-height:2.15rem;
+height:2.5rem;
 // padding-bottom:2.2rem;
-// padding-top:-2rem;
+
 // padding-left:2rem;
 width:auto;
 }
+
+
 .shop-cart-icon{
 text-align:center;
 align-items:center;
+
 // margin-right:2rem;
 height:1rem;
 width:1.5rem;
@@ -83,5 +103,16 @@ border: none;
  
 }
 
+@media (min-width: ${({ theme }) => theme.media.mobile}) and (max-width: ${({ theme }) => theme.media.mobile2}){
+
+.container{
+margin-top:0rem;
+}
+.btn-fav-mov{
+width:80%;
+margin-left:7px;
+
+}
+}
 
 `;

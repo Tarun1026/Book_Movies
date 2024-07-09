@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { FaRupeeSign } from "react-icons/fa";
-import { Right2,SwitchContainer, SwitchLabel, SwitchButton,PageContainer  } from "./styles/orders";
+import { Right2,SwitchContainer, SwitchLabel, SwitchButton,PageContainer  } from "../styles/orders";
 
 import { Link } from "react-router-dom";
 

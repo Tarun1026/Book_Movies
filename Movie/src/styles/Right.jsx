@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Right = styled.div`
 .right-left-div {
   display: flex;
-  margin-left: 2rem;
+  margin-left: 1.7rem;
+  margin-top:3rem;
 }
 
 .left-div {
@@ -113,10 +114,15 @@ export const Right = styled.div`
 }
 
 @media (max-width: ${({ theme }) => theme.media.mobile}) {
+
+  .right-left-div{
+margin-top:2rem;
+}
+
   .right-p {
     font-size: 2rem;
     margin-left: -0.8rem;
-    margin-top:1.5rem;
+    // margin-top:1.5rem;
   }
 
   .movie-grid {

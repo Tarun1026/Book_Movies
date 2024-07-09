@@ -14,7 +14,7 @@ import {
   SwitchButton,
 } from "../styles/SwitchComponent";
 
-import { FaRupeeSign,FaShoppingCart  } from "react-icons/fa";
+import { FaRupeeSign, FaShoppingCart } from "react-icons/fa";
 import { useFavoriteMovie } from "../FavouriteMovieCard/context";
 import { FavouriteMovies } from "../styles/FavouriteMovies";
 import { Link, useNavigate } from "react-router-dom";
@@ -55,7 +55,7 @@ const HomePage = ({ movie }) => {
 
   const navigate = useNavigate();
   const { addFavoriteMovie, favoriteMovies } = useFavoriteMovie();
-  const{addBookMovies,bookMovies}=useBookMovie();
+  const { addBookMovies, bookMovies } = useBookMovie();
   const [dynamicHeading, setDynamicHeading] = useState("Popular Movies");
   const movieCategories = [
     { value: "popular", heading: "Popular Movies" },
@@ -191,42 +191,43 @@ const HomePage = ({ movie }) => {
     <ThemeProvider theme={isOn ? darkTheme : lightTheme}>
       <PageContainer>
         <Nav>
-          <div className="navbar">
-            <img
-              src="https://game-zone-seven.vercel.app/assets/logo-ff4914e6.webp"
-              alt=""
-              className="image"
-            />
+          <div className="wrap">
+            <div className="navbar">
+              <img
+                src="https://game-zone-seven.vercel.app/assets/logo-ff4914e6.webp"
+                alt=""
+                className="image"
+              />
 
-            <SearchInput query={query} handleChange={handleChange3} />
+              <SearchInput query={query} handleChange={handleChange3} />
 
-            <SwitchContainer onClick={toggleSwitch}>
-              <SwitchButton isOn={isOn} />
-              <SwitchLabel>Dark Mode</SwitchLabel>
-            </SwitchContainer>
+              <SwitchContainer onClick={toggleSwitch}>
+                <SwitchButton isOn={isOn} />
+                <SwitchLabel>Dark Mode</SwitchLabel>
+              </SwitchContainer>
+            </div>
+            <div></div>
+            <FavouriteMovies>
+              <div className="container">
+                {/* <div className="content"></div> */}
+                <div className="right-end">
+                  <Link to="/favorite">
+                    <button className="btn-fav-mov">Favourite Movies</button>
+                  </Link>
+                </div>
+                <div className="cIcon">
+                  <Link to="/book">
+                    <button className="btn-cart-icon">
+                      <FaShoppingCart size={20} className="shop-cart-icon" />
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </FavouriteMovies>
           </div>
         </Nav>
-        <FavouriteMovies>
-          <div className="container">
-            {/* <div className="content"></div> */}
-            <div className="right-end">
-              <Link to="/favorite">
-                <button className="btn-fav-mov">Favourite Movies</button>
-                <Link to="/book">
-                <button className="btn-cart-icon"><FaShoppingCart size={20} className="shop-cart-icon"/></button>
-              </Link>
-              </Link>
-            </div>
-          </div>
-        </FavouriteMovies>
-        {/* <FavouriteMovies>
-          <div className="container">
-            {/* <div className="content"></div> */}
-            {/* <div className="right-end">
-             
-            </div> */}
-          {/* </div> */}
-        {/* </FavouriteMovies>  */}
+
+       
         <Right>
           <div className="right-left-div">
             <div className="left-div">
@@ -322,11 +323,20 @@ const HomePage = ({ movie }) => {
                           </div>
                         </div>
                         <div className="cart">
-                        {movie.vote_count && (<FaRupeeSign className="icon-cart"/>)}
-                         {movie.vote_count && (<p>{movie.vote_count}</p>)} 
-                         {movie.vote_count && ( <button className="btn-cart"
-                         onClick={() => handleBookMovie(movie)}
-                         >Add to Cart</button>)}
+                          {movie.vote_count && (
+                            <FaRupeeSign className="icon-cart" />
+                          )}
+                          {movie.vote_count && <p>{movie.vote_count}</p>}
+                          <div className="aTC-btn">
+                            {movie.vote_count && (
+                              <button
+                                className="btn-cart"
+                                onClick={() => handleBookMovie(movie)}
+                              >
+                                Add to Cart
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </MovieCard>
