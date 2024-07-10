@@ -1,20 +1,16 @@
 import React, { createContext, useContext, useState } from 'react';
 
-
-const FavoriteMovieContext = createContext();
+const FavoriteContext = createContext();
 
 export const useFavoriteMovie = () => {
-  return useContext(FavoriteMovieContext);
+  return useContext(FavoriteContext);
 };
-
 
 export const FavoriteMovieProvider = ({ children }) => {
   const [favoriteMovies, setFavoriteMovies] = useState(() => {
-    
     const storedFavorites = localStorage.getItem('favoriteMovies');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
-
 
   const addFavoriteMovie = (movie) => {
     const isDuplicate = favoriteMovies.some((m) => m.id === movie.id);
@@ -24,25 +20,25 @@ export const FavoriteMovieProvider = ({ children }) => {
     }
 
     setFavoriteMovies((prevMovies) => {
-      const updatedMovies = [...prevMovies, movie];
-      localStorage.setItem('favoriteMovies', JSON.stringify(updatedMovies));
-      return updatedMovies;
+      const updatedFavoriteMovies = [...prevMovies, movie];
+      localStorage.setItem('favoriteMovies', JSON.stringify(updatedFavoriteMovies));
+      return updatedFavoriteMovies;
     });
   };
 
   const removeFavoriteMovie = (id) => {
     setFavoriteMovies((prevMovies) => {
-      const updatedMovies = prevMovies.filter((movie) => movie.id !== id);
-      localStorage.setItem('favoriteMovies', JSON.stringify(updatedMovies));
-      return updatedMovies;
+      const updatedFavoriteMovies = prevMovies.filter((movie) => movie.id !== id);
+      localStorage.setItem('favoriteMovies', JSON.stringify(updatedFavoriteMovies));
+      return updatedFavoriteMovies;
     });
   };
 
   return (
-    <FavoriteMovieContext.Provider
+    <FavoriteContext.Provider
       value={{ favoriteMovies, addFavoriteMovie, removeFavoriteMovie }}
     >
       {children}
-    </FavoriteMovieContext.Provider>
+    </FavoriteContext.Provider>
   );
 };

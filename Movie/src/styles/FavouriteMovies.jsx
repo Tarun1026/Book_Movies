@@ -6,43 +6,56 @@ export const FavouriteMovies = styled.div`
 
   .container {
     display: flex;
-    margin-top: -15px;
+    margin-top: -10px;
     align-items: center; // Align items center vertically
   }
 
   .right-end {
     display: flex;
+    margin-top:2px;
+    // margin-right:-1rem;
   }
 
-  button {
-    background-color: #007bff;
-    color: white;
+  // button {
+  //   background-color: #007bff;
+    
+  // }
+.cIcon{
+margin-right:1rem;
+}
+  .btn-fav-mov {
+   color: ${({ theme }) => theme.fColor};
     border: none;
-    padding: 6px 15px;
-    font-size: 16px;
+    // padding: 6px 15px;
+    // font-size: 16px;
+    font-weight:600;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-
-  .btn-fav-mov {
-    width: 90%;
-    font-size: 0.8rem;
-    margin-right: 20px;
+    text-align:center;
+  text-decoration:none;
+    
+    font-size:1rem;
+    margin-left: 10px;
     height: 40px; // Set a consistent height
   }
 
-  button:hover {
-    background-color: #0056b3;
+  .btn-fav-mov:hover {
+    color: #0056b3;
   }
 
   .btn-cart-icon {
-    background-color: black;
-    padding: 7px 20px;
+    // background-color: black;
+    color: ${({ theme }) => theme.color};
+    // padding: 7px 20px;
     height: 40px; // Set a consistent height
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
   }
+
+    .btn-cart-icon :hover{
+    
+    color:#0056b3;
+    }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     .container {
@@ -52,9 +65,12 @@ export const FavouriteMovies = styled.div`
 
     .btn-fav-mov {
       width: 80%;
-      margin-left: 18px;
+      margin-left: -1px;
       height: 40px; 
     }
+      .cIcon{
+margin-left:-1.5rem;
+}
 
     .btn-cart-icon {
       height: 40px; 
@@ -70,10 +86,13 @@ export const FavouriteMovies = styled.div`
     .container {
       margin-top: 0rem;
     }
+            .cIcon{
+margin-left:-1.5rem;
+}
 
     .btn-fav-mov {
       width: 80%;
-      margin-left: 7px;
+      margin-left:-4px;
       height: 40px; // Consistent height for this media query
     }
 
@@ -81,4 +100,14 @@ export const FavouriteMovies = styled.div`
       height: 40px; 
     }
   }
+
+   @media (min-width: ${({ theme }) => theme.media.mobile2}) and (max-width: ${({ theme }) => theme.media.tab}) {
+   
+    .right-end {
+    display: flex;
+    margin-top:2px;
+    margin-right:0rem;
+  }
+   
+   }
 `;

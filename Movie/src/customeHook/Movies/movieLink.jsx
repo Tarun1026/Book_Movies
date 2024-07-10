@@ -27,7 +27,7 @@ const movieLink = (point, query, dynamicUrl, index) => {
         } else {
           data = res.data.results;
         }
-
+      console.log("rele",data)
         if (data.length === 0) {
           setError("No results found");
         } else {

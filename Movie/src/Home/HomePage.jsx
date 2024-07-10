@@ -1,8 +1,8 @@
 import React, { useState, useRef, useCallback, useLayoutEffect } from "react";
-import movieLink from "../customeHook/movieLink";
+import movieLink from "../customeHook/Movies/movieLink";
 import { ThemeProvider } from "styled-components";
 import loadingGif from "../assets/loading-white.gif";
-import sideBarMovies from "../sideBar/sideBarMovies";
+import sideBarMovies from "../customeHook/sideBar/sideBarMovies";
 import { MovieCard } from "../styles/MovieCard";
 import { Nav } from "../styles/Nav";
 import { PageContainer } from "../styles/PageContainer";
@@ -14,11 +14,12 @@ import {
   SwitchButton,
 } from "../styles/SwitchComponent";
 
-import { FaRupeeSign, FaShoppingCart } from "react-icons/fa";
+import { FaRupeeSign, FaShoppingCart, FaHeart } from "react-icons/fa";
 import { useFavoriteMovie } from "../FavouriteMovieCard/context";
 import { FavouriteMovies } from "../styles/FavouriteMovies";
 import { Link, useNavigate } from "react-router-dom";
 import { useBookMovie } from "../CartBookMovies/BookMovie";
+
 const SearchInput = ({ query, handleChange }) => {
   const inputRef = useRef(null);
 
@@ -38,10 +39,11 @@ const SearchInput = ({ query, handleChange }) => {
   );
 };
 
-const HomePage = ({ movie }) => {
+const HomePage = () => {
   const [isOn, setIsOn] = useState(false);
-  const [selected, setSelected] = useState("popular");
-  const [selected2, setSelected2] = useState("release_date");
+  const [selected, setSelected] = useState("upcoming");
+  const [selected2, setSelected2] = useState("popularity.asc");
+
   const [query, setQuery] = useState("");
   const [dynamicUrl, setDynamicUrl] = useState("");
   const [index, setIndex] = useState(null);
@@ -56,19 +58,20 @@ const HomePage = ({ movie }) => {
   const navigate = useNavigate();
   const { addFavoriteMovie, favoriteMovies } = useFavoriteMovie();
   const { addBookMovies, bookMovies } = useBookMovie();
-  const [dynamicHeading, setDynamicHeading] = useState("Popular Movies");
+  const [dynamicHeading, setDynamicHeading] = useState("Upcoming Movies");
+
   const movieCategories = [
-    { value: "popular", heading: "Popular Movies" },
-    { value: "upcoming", heading: "Upcoming Movies" },
+   { value: "upcoming", heading: "Upcoming Movies" },
+   { value: "popular", heading: "Popular Movies" },
     { value: "top_rated", heading: "Top Rated Movies" },
     { value: "now_playing", heading: "Now Playing Movies" },
   ];
 
   const orderedBY = [
+    { value: "popularity.desc", heading: "Popularity" },
     { value: "release_date", heading: "Release Date" },
-    { value: "popularity", heading: "Popularity" },
-    { value: "average", heading: "Average" },
-    { value: "voting", heading: "Voting" },
+   
+    { value: "vote_count.desc", heading: "Price" },
   ];
 
   const handleSearch = useCallback(
@@ -140,6 +143,19 @@ const HomePage = ({ movie }) => {
 
   const handleChange2 = (e) => {
     setSelected2(e.target.value);
+    if (e.target.value === "release_date") {
+      setDynamicUrl(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${
+          import.meta.env.VITE_SECRET_KEY
+        }&sort_by=release_date.desc`
+      );
+    } else {
+      setDynamicUrl(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${
+          import.meta.env.VITE_SECRET_KEY
+        }&sort_by=${e.target.value}`
+      );
+    }
   };
 
   const toggleSwitch = () => {
@@ -162,6 +178,7 @@ const HomePage = ({ movie }) => {
     addFavoriteMovie(movie);
     alert("Movie added to Favourite List");
   };
+
   const handleBookMovie = (movie) => {
     const isDuplicate = bookMovies.some((m) => m.id === movie.id);
     if (isDuplicate) {
@@ -171,12 +188,14 @@ const HomePage = ({ movie }) => {
     addBookMovies(movie);
     alert("Movie added to Cart");
   };
+
   const darkTheme = {
     backgroundColor: "#0b0b0d",
     color: "#e3e3e3",
     dropdownBackground: "#222831",
     releaseDateColor: "#90f6d7",
     addButtonColor: "blue",
+    fColor: "#00FFFF",
   };
 
   const lightTheme = {
@@ -185,6 +204,7 @@ const HomePage = ({ movie }) => {
     dropdownBackground: "#d3d3d3",
     releaseDateColor: "blue",
     addButtonColor: "red",
+    fColor: "#041E42",
   };
 
   return (
@@ -209,17 +229,14 @@ const HomePage = ({ movie }) => {
             <div></div>
             <FavouriteMovies>
               <div className="container">
-                {/* <div className="content"></div> */}
                 <div className="right-end">
-                  <Link to="/favorite">
-                    <button className="btn-fav-mov">Favourite Movies</button>
+                  <Link to="/favorite" className="btn-fav-mov">
+                    Favourite Movies
                   </Link>
                 </div>
                 <div className="cIcon">
-                  <Link to="/book">
-                    <button className="btn-cart-icon">
-                      <FaShoppingCart size={20} className="shop-cart-icon" />
-                    </button>
+                  <Link to="/book" className="btn-cart-icon">
+                    <FaShoppingCart size={35} className="shop-cart-icon" />
                   </Link>
                 </div>
               </div>
@@ -227,7 +244,6 @@ const HomePage = ({ movie }) => {
           </div>
         </Nav>
 
-       
         <Right>
           <div className="right-left-div">
             <div className="left-div">
@@ -277,7 +293,9 @@ const HomePage = ({ movie }) => {
                   onChange={(e) => handleChange2(e)}
                   className="dropdown-2"
                 >
+                  
                   {orderedBY.map((category, index) => (
+                    
                     <option key={index} value={category.value}>
                       Order by: {category.heading}
                     </option>
@@ -287,7 +305,11 @@ const HomePage = ({ movie }) => {
               {isError && <h2>{isError}</h2>}
               {loading ? (
                 <div>
-                  <img src={loadingGif} alt="Loading" className="loading-gif" />
+                  <img
+                    src={loadingGif}
+                    alt="Loading"
+                    className="loading-gif"
+                  />
                 </div>
               ) : (
                 <div className="movie-grid">
@@ -318,25 +340,25 @@ const HomePage = ({ movie }) => {
                               className="btn-fav"
                               onClick={() => handleAddFavorite(movie)}
                             >
-                              ADD
+                              <FaHeart size={25} />
                             </button>
                           </div>
                         </div>
                         <div className="cart">
-                          {movie.vote_count && (
-                            <FaRupeeSign className="icon-cart" />
+                          {movie.vote_count > 0 && (
+                            <>
+                              <FaRupeeSign className="icon-cart" />
+                              <p>{movie.vote_count}</p>
+                              <div className="aTC-btn">
+                                <button
+                                  className="btn-cart"
+                                  onClick={() => handleBookMovie(movie)}
+                                >
+                                  Add to Cart
+                                </button>
+                              </div>
+                            </>
                           )}
-                          {movie.vote_count && <p>{movie.vote_count}</p>}
-                          <div className="aTC-btn">
-                            {movie.vote_count && (
-                              <button
-                                className="btn-cart"
-                                onClick={() => handleBookMovie(movie)}
-                              >
-                                Add to Cart
-                              </button>
-                            )}
-                          </div>
                         </div>
                       </div>
                     </MovieCard>

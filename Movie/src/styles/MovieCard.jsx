@@ -133,7 +133,7 @@ margin-top:5px;
   }
 
   .btn-fav {
-  color: ${({ theme }) => theme.addButtonColor};
+  color: red;
     background-color: transparent;
     border: none;
     padding: 0;
@@ -146,7 +146,7 @@ margin-top:5px;
   }
 
 .btn-fav:hover{
-color:green;
+color:#0000FF;
 }
 
   .movie-poster-b {
