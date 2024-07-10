@@ -1,16 +1,16 @@
 // components/FavoriteMovieCard.js
 
 import React, { useState } from "react";
-import { useFavoriteMovie } from "./context";
-import { Favourite, Right2 } from "../styles/Favourite";
+import { useFavoriteMovie } from "../context/FavouriteMoviesContext";
+import { Favourite, Right2 } from "../styles/FavouriteMoviesCard";
 import { ThemeProvider } from "styled-components";
 import {
   SwitchContainer,
   SwitchLabel,
   SwitchButton,
-} from "../styles/Favourite";
+} from "../styles/FavouriteMoviesCard";
 import { PageContainer } from "../styles/PageContainer";
-
+import { getLanguageName } from "../utils/languageUtils";
 const FavoriteMovieCard = () => {
   const { favoriteMovies, removeFavoriteMovie, addFavoriteMovie } =
     useFavoriteMovie();
@@ -62,11 +62,12 @@ const FavoriteMovieCard = () => {
                     />
                     <div className="movie-title">
                       <div className="vote">
-                        {movie.original_language && (
-                          <h2 className="language">
-                            {movie.original_language}
-                          </h2>
-                        )}
+                      {movie.original_language ? (
+                            <h2 className="language">
+                              {getLanguageName(movie.original_language)}
+                            </h2>
+                          ):(getLanguageName("en"))
+                          }
                         {movie.vote_average && (
                           <p className="vote-avg">{movie.vote_average}</p>
                         )}

@@ -33,7 +33,7 @@ export const MovieCard = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-top: 5px;
-    padding: 0 10px;
+    padding: 0 8px;
     border-radius: 3px;
     font-size: 1rem;
     font-weight: 900;
@@ -49,12 +49,12 @@ export const MovieCard = styled.div`
   }
 
   .language {
-    background-color: #fd5c63;
-    color: black;
+   
     border-radius: 5px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-align: center;
     width: 2.5rem;
+    font-weight:550;
   }
 
   .movie-title {
@@ -67,7 +67,7 @@ export const MovieCard = styled.div`
     margin-top: 10px;
     align-items: flex-end;
     margin-left: 8px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 900;
   }
 .rel{
@@ -111,7 +111,7 @@ margin-top:5px;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-right:2.5rem;
+    margin-right:3.5rem;
   }
 
   .btn-cart {

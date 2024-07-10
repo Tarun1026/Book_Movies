@@ -6,7 +6,7 @@ export const useFavoriteMovie = () => {
   return useContext(FavoriteContext);
 };
 
-export const FavoriteMovieProvider = ({ children }) => {
+export const FavoriteContextProvider = ({ children }) => {
   const [favoriteMovies, setFavoriteMovies] = useState(() => {
     const storedFavorites = localStorage.getItem('favoriteMovies');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -21,15 +21,23 @@ export const FavoriteMovieProvider = ({ children }) => {
 
     setFavoriteMovies((prevMovies) => {
       const updatedFavoriteMovies = [...prevMovies, movie];
-      localStorage.setItem('favoriteMovies', JSON.stringify(updatedFavoriteMovies));
+      localStorage.setItem(
+        'favoriteMovies',
+        JSON.stringify(updatedFavoriteMovies)
+      );
       return updatedFavoriteMovies;
     });
   };
 
   const removeFavoriteMovie = (id) => {
     setFavoriteMovies((prevMovies) => {
-      const updatedFavoriteMovies = prevMovies.filter((movie) => movie.id !== id);
-      localStorage.setItem('favoriteMovies', JSON.stringify(updatedFavoriteMovies));
+      const updatedFavoriteMovies = prevMovies.filter(
+        (movie) => movie.id !== id
+      );
+      localStorage.setItem(
+        'favoriteMovies',
+        JSON.stringify(updatedFavoriteMovies)
+      );
       return updatedFavoriteMovies;
     });
   };

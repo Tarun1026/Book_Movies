@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FavouriteMovies = styled.div`
+export const FavouriteAndCartMovies = styled.div`
   margin-top: 1rem;
   border-radius: 8px;
 

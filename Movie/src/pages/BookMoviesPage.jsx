@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
-import { useBookMovie } from "./BookMovie";
-import { Book, Right2 } from "../styles/BookMovieCardStyles";
+import { useBookMovie } from "../context/BookMoviesContext";
+import { Book, Right2 } from "../styles/BookMovieCarjsx";
 
 import { ThemeProvider } from "styled-components";
 import { FaRupeeSign } from "react-icons/fa";
@@ -8,10 +8,11 @@ import {
   SwitchContainer,
   SwitchLabel,
   SwitchButton,
-} from "../styles/Favourite";
+} from "../styles/FavouriteMoviesCard";
 import { PageContainer } from "../styles/PageContainer";
 import { loadStripe } from "@stripe/stripe-js";
 import loadingGif from "../assets/loading-white.gif";
+import { getLanguageName } from "../utils/languageUtils";
 const BookMovieCard = () => {
   const [loading, setLoading] = useState(false);
   const { bookMovies, removeBookMovies, addBookMovies } = useBookMovie();
@@ -119,11 +120,12 @@ const BookMovieCard = () => {
                       />
                       <div className="movie-title">
                         <div className="vote">
-                          {movie.original_language && (
+                        {movie.original_language ? (
                             <h2 className="language">
-                              {movie.original_language}
+                              {getLanguageName(movie.original_language)}
                             </h2>
-                          )}
+                          ):(getLanguageName("en"))
+                          }
                           {movie.vote_average && (
                             <p className="vote-avg">{movie.vote_average}</p>
                           )}
@@ -148,7 +150,7 @@ const BookMovieCard = () => {
                         <div className="cart">
                           <div className="rs">
                             {movie.vote_count && (
-                              <FaRupeeSign className="icon-cart" />
+                              <FaRupeeSign size={18} className="icon-cart" />
                             )}
                           </div>
                           {movie.vote_count && <p>{movie.vote_count}</p>}

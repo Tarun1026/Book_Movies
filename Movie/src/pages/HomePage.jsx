@@ -1,8 +1,8 @@
 import React, { useState, useRef, useCallback, useLayoutEffect } from "react";
-import movieLink from "../customeHook/Movies/movieLink";
+import movieLink from "../hooks/useMoviesLink";
 import { ThemeProvider } from "styled-components";
 import loadingGif from "../assets/loading-white.gif";
-import sideBarMovies from "../customeHook/sideBar/sideBarMovies";
+import sideBarMovies from "../hooks/usesideBarMovies";
 import { MovieCard } from "../styles/MovieCard";
 import { Nav } from "../styles/Nav";
 import { PageContainer } from "../styles/PageContainer";
@@ -13,12 +13,12 @@ import {
   SwitchLabel,
   SwitchButton,
 } from "../styles/SwitchComponent";
-
 import { FaRupeeSign, FaShoppingCart, FaHeart } from "react-icons/fa";
-import { useFavoriteMovie } from "../FavouriteMovieCard/context";
-import { FavouriteMovies } from "../styles/FavouriteMovies";
+import { useFavoriteMovie } from "../context/FavouriteMoviesContext";
+import { FavouriteAndCartMovies } from "../styles/FavouriteAndCartMovies";
 import { Link, useNavigate } from "react-router-dom";
-import { useBookMovie } from "../CartBookMovies/BookMovie";
+import { useBookMovie } from "../context/BookMoviesContext";
+import { getLanguageName } from "../utils/languageUtils";
 
 const SearchInput = ({ query, handleChange }) => {
   const inputRef = useRef(null);
@@ -43,7 +43,6 @@ const HomePage = () => {
   const [isOn, setIsOn] = useState(false);
   const [selected, setSelected] = useState("upcoming");
   const [selected2, setSelected2] = useState("popularity.asc");
-
   const [query, setQuery] = useState("");
   const [dynamicUrl, setDynamicUrl] = useState("");
   const [index, setIndex] = useState(null);
@@ -54,15 +53,14 @@ const HomePage = () => {
     index
   );
   const { movieC, loadingC, isErrorC } = sideBarMovies();
-
   const navigate = useNavigate();
   const { addFavoriteMovie, favoriteMovies } = useFavoriteMovie();
   const { addBookMovies, bookMovies } = useBookMovie();
   const [dynamicHeading, setDynamicHeading] = useState("Upcoming Movies");
 
   const movieCategories = [
-   { value: "upcoming", heading: "Upcoming Movies" },
-   { value: "popular", heading: "Popular Movies" },
+    { value: "upcoming", heading: "Upcoming Movies" },
+    { value: "popular", heading: "Popular Movies" },
     { value: "top_rated", heading: "Top Rated Movies" },
     { value: "now_playing", heading: "Now Playing Movies" },
   ];
@@ -70,7 +68,6 @@ const HomePage = () => {
   const orderedBY = [
     { value: "popularity.desc", heading: "Popularity" },
     { value: "release_date", heading: "Release Date" },
-   
     { value: "vote_count.desc", heading: "Price" },
   ];
 
@@ -182,11 +179,17 @@ const HomePage = () => {
   const handleBookMovie = (movie) => {
     const isDuplicate = bookMovies.some((m) => m.id === movie.id);
     if (isDuplicate) {
-      alert("This movie is already in your Cart ");
+      alert("This movie is already in your Cart");
       return;
     }
-    addBookMovies(movie);
-    alert("Movie added to Cart");
+    const randomVoteCount = Math.floor(Math.random() * (2000 - 100 + 1)) + 100;
+    const movieWithRandomVoteCount = {
+      ...movie,
+      vote_count: movie.vote_count || randomVoteCount,
+    };
+    addBookMovies(movieWithRandomVoteCount);
+    alert("Movie add to Cart SuccessFully");
+    // navigate("/book");
   };
 
   const darkTheme = {
@@ -218,19 +221,16 @@ const HomePage = () => {
                 alt=""
                 className="image"
               />
-
               <SearchInput query={query} handleChange={handleChange3} />
-
               <SwitchContainer onClick={toggleSwitch}>
                 <SwitchButton isOn={isOn} />
                 <SwitchLabel>Dark Mode</SwitchLabel>
               </SwitchContainer>
             </div>
-            <div></div>
-            <FavouriteMovies>
+            <FavouriteAndCartMovies>
               <div className="container">
                 <div className="right-end">
-                  <Link to="/favorite" className="btn-fav-mov">
+                  <Link to="/favourite" className="btn-fav-mov">
                     Favourite Movies
                   </Link>
                 </div>
@@ -240,10 +240,9 @@ const HomePage = () => {
                   </Link>
                 </div>
               </div>
-            </FavouriteMovies>
+            </FavouriteAndCartMovies>
           </div>
         </Nav>
-
         <Right>
           <div className="right-left-div">
             <div className="left-div">
@@ -274,7 +273,6 @@ const HomePage = () => {
             </div>
             <div className="right-div">
               <p className="right-p">{dynamicHeading}</p>
-
               <div className="classname">
                 <select
                   value={selected}
@@ -293,9 +291,7 @@ const HomePage = () => {
                   onChange={(e) => handleChange2(e)}
                   className="dropdown-2"
                 >
-                  
                   {orderedBY.map((category, index) => (
-                    
                     <option key={index} value={category.value}>
                       Order by: {category.heading}
                     </option>
@@ -322,12 +318,12 @@ const HomePage = () => {
                       />
                       <div className="movie-title">
                         <div className="vote">
-                          {movie.original_language && (
+                          {movie.original_language ? (
                             <h2 className="language">
-                              {" "}
-                              {movie.original_language}
+                              {getLanguageName(movie.original_language)}
                             </h2>
-                          )}
+                          ):(getLanguageName("en"))
+                          }
                           {movie.vote_average && (
                             <p className="vote-avg">{movie.vote_average}</p>
                           )}
@@ -345,10 +341,23 @@ const HomePage = () => {
                           </div>
                         </div>
                         <div className="cart">
-                          {movie.vote_count > 0 && (
+                          {movie.vote_count > 0 ? (
                             <>
                               <FaRupeeSign className="icon-cart" />
                               <p>{movie.vote_count}</p>
+                              <div className="aTC-btn">
+                                <button
+                                  className="btn-cart"
+                                  onClick={() => handleBookMovie(movie)}
+                                >
+                                  Add to Cart
+                                </button>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <FaRupeeSign className="icon-cart" />
+                              <p>{Math.floor(Math.random() * (2000 - 100 + 1)) + 100}</p>
                               <div className="aTC-btn">
                                 <button
                                   className="btn-cart"

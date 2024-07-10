@@ -6,7 +6,7 @@ export const useBookMovie = () => {
   return useContext(BookContext);
 };
 
-export const BookMovieProvider = ({ children }) => {
+export const BookContextProvider = ({ children }) => {
   const [bookMovies, setBookMovies] = useState(() => {
     const storedFavorites = localStorage.getItem('bookMovies');
     return storedFavorites ? JSON.parse(storedFavorites) : [];

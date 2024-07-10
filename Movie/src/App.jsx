@@ -1,16 +1,16 @@
 import React from "react";
 import "./App.css";
-import HomePage from "./Home/HomePage";
+import HomePage from "./pages/HomePage";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { Routes, Route } from 'react-router-dom';
-import FavoriteMovieCard from "./FavouriteMovieCard/FavouriteMovieCard";
-import { FavoriteMovieProvider } from "./FavouriteMovieCard/context";
-import { BookMovieProvider } from "./CartBookMovies/BookMovie";
-import BookMovieCard from "./CartBookMovies/BookMovieCard";
-import Success from "./SuccessPage/Success";
-import Cancel from "./Cancel";
-import OrdersPage from "./Order/OrderPage";
+import FavoriteMovieCard from "./pages/FavouriteMoviesPage";
+import { FavoriteContextProvider } from "./context/FavouriteMoviesContext";
+import { BookContextProvider } from "./context/BookMoviesContext";
+import BookMovieCard from "./pages/BookMoviesPage";
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
+import OrdersPage from "./pages/OrderPage";
 
 const App = () => {
   const theme = {
@@ -18,21 +18,21 @@ const App = () => {
   };
 
   return (
-    <FavoriteMovieProvider>
-      <BookMovieProvider>
+    <FavoriteContextProvider>
+      <BookContextProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route path="/favorite" element={<FavoriteMovieCard />} />
+            <Route path="/favourite" element={<FavoriteMovieCard />} />
             <Route path="/book" element={<BookMovieCard />} />
             <Route path="/success" element={<Success />} />
             <Route path="/cancel" element={<Cancel />} />
             <Route path="/order" element={<OrdersPage />} />
           </Routes>
         </ThemeProvider>
-      </BookMovieProvider>
-    </FavoriteMovieProvider>
+      </BookContextProvider>
+    </FavoriteContextProvider>
   );
 };
 
