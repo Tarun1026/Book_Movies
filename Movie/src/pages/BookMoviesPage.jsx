@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { useBookMovie } from "../context/BookMoviesContext";
-import { Book, Right2 } from "../styles/BookMovieCarjsx";
+import { Book, Right2 } from "../styles/BookMovieCard";
 
 import { ThemeProvider } from "styled-components";
 import { FaRupeeSign } from "react-icons/fa";
